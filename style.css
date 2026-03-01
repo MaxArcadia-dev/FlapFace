@@ -1,75 +1,51 @@
-body {
-    margin: 0;
-    background: lightpink;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: 'Arial Black', sans-serif;
-    overflow: hidden;
+body { margin: 0; background: #111; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Courier New', monospace; overflow: hidden; }
+.game-container { width: 800px; height: 600px; background: #70c5ce; position: relative; border: 5px solid #fff; overflow: hidden; transition: 2s; }
+
+/* Glowing Yellow Title */
+.game-title { 
+    font-size: 55px; color: #ffff00; text-align: center; margin-bottom: 30px; 
+    text-shadow: 0 0 15px #ffff00, 0 0 30px #ffaa00, 3px 3px 5px #000;
+    animation: titleGlow 1.5s ease-in-out infinite alternate;
+}
+@keyframes titleGlow {
+    from { text-shadow: 0 0 10px #ffff00, 0 0 20px #ffaa00, 3px 3px 5px #000; }
+    to { text-shadow: 0 0 25px #ffff00, 0 0 50px #ffcc00, 3px 3px 5px #000; }
 }
 
-.game-container {
-    width: 800px;
-    height: 600px;
-    background: #70c5ce;
-    position: relative;
-    overflow: hidden;
-    border: 5px solid #333;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+/* Fix Scrambled Layout & Typing */
+#start-screen { position: absolute; inset: 0; background: rgba(0,0,0,0.9); z-index: 9000; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.menu-box { display: flex; flex-direction: column; gap: 12px; align-items: center; width: 350px; text-align: center; color: white; }
+.hidden { display: none !important; }
+
+#name-input { 
+    width: 90%; padding: 12px; font-size: 18px; margin-bottom: 15px; border-radius: 8px; border: 3px solid gold; 
+    text-align: center; background: white !important; color: black !important; 
+    position: relative; z-index: 10000; pointer-events: auto !important;
 }
 
-#start-screen {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    z-index: 1000;
-}
+.menu-btn { width: 100%; padding: 15px; font-size: 20px; font-weight: bold; background: #1a5e7a; color: white; border: 3px solid #fff; cursor: pointer; }
+.menu-btn:hover { background: gold; color: black; }
+.gold-btn { background: gold; color: black; border-color: gold; }
 
-#start-screen p {
-    font-size: 20px;
-    animation: blink 1s infinite;
-}
+/* Gameplay Visuals */
+.bird { width: 65px; height: 65px; position: absolute; left: 100px; border-radius: 50%; background-image: url('sample11.jpg'); background-size: cover; z-index: 100; transition: transform 0.1s; }
+.bird.angel { border: 3px solid white; box-shadow: 0 0 15px white; }
+.bird.angel .headgear::before { content: ""; position: absolute; top: -15px; left: 5px; width: 50px; height: 8px; border: 3px solid gold; border-radius: 50%; }
+.bird.demon { border: 3px solid red; box-shadow: 0 0 20px red; }
+.bird.demon .headgear::before { content: "▲"; position: absolute; top: -20px; left: 5px; color: red; font-size: 20px; }
+.bird.demon .headgear::after { content: "▲"; position: absolute; top: -20px; right: 5px; color: red; font-size: 20px; }
 
-@keyframes blink { 50% { opacity: 0; } }
+/* Night Mode & Bloody Pipes */
+.night-mode { background: #0d1b2a !important; }
+.pipe { width: 80px; background: #2e7d32; position: absolute; border: 2px solid #1b5e20; z-index: 50; }
+.night-mode .pipe { background: #800000; border: 3px solid red; box-shadow: 0 0 15px red; }
 
-.bird {
-    width: 80px; 
-    height: 80px;
-    position: absolute;
-    left: 100px;
-    top: 250px;
-    background-color: yellow; /* Fallback */
-    background-image: url("sample11.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 100;
-}
+/* Glowing Numbers Fix */
+.number-layer { position: absolute; inset: 0; z-index: 1; pointer-events: none !important; }
+.floating-number { position: absolute; font-size: 24px; font-weight: bold; animation: floatMove 6s linear infinite; }
+.glowing-green { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
+.glowing-red { color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+@keyframes floatMove { 0% { left: 850px; } 100% { left: -100px; } }
 
-.pipe {
-    width: 80px;
-    background: #2e7d32;
-    position: absolute;
-    border: 2px solid #1b5e20;
-}
-
-.top-pipe { top: 0; }
-.bottom-pipe { bottom: 0; }
-
-#score {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 32px;
-    font-weight: bold;
-    color: white;
-    text-shadow: 3px 3px 0px #000;
-    z-index: 200;
-}
+#ui-layer { position: absolute; top: 20px; left: 20px; z-index: 500; color: white; text-shadow: 2px 2px #000; }
+.back-btn { background: #555; color: white; border: none; padding: 10px 20px; margin-top: 10px; cursor: pointer; }
