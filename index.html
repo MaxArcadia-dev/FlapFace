@@ -2,22 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flappy Bird Clone</title>
+    <title>Flap His Face - Official Final Version</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="game-container" id="game">
-        <div id="start-screen">
-            <h1>FLAPPY CLONE</h1>
-            <p>Press SPACE or CLICK to Start</p>
+        <div class="number-layer" id="number-layer"></div>
+        
+        <div id="ui-layer" class="hidden">
+            <div id="score-text">Score: 0</div>
+            <div id="best-text">Best: 0</div>
         </div>
 
-        <div id="score">Score: 0</div>
-        <div class="bird" id="bird"></div>
-    </div>
+        <div class="bird angel" id="bird">
+            <div class="headgear"></div>
+        </div>
 
+        <div id="start-screen">
+            <h1 class="game-title">FLAP HIS FACE</h1>
+            
+            <div id="menu-container" class="menu-box">
+                <button class="menu-btn" id="start-btn">START</button>
+                <button class="menu-btn" id="leaderboard-btn">LEADERBOARD</button>
+                <button class="menu-btn" id="credits-btn">CREDITS</button>
+            </div>
+
+            <div id="setup-box" class="menu-box hidden">
+                <h3>PLAYER LOGIN</h3>
+                <p>Playing as: <strong id="display-name" style="color: gold;">Guest</strong></p>
+                <input type="text" id="name-input" placeholder="Type Name..." maxlength="12" spellcheck="false" autocomplete="off">
+                <button id="btn-save-name" class="menu-btn gold-btn">CONFIRM & PLAY</button>
+                <button class="back-btn">BACK</button>
+            </div>
+
+            <div id="home-leaderboard" class="menu-box hidden">
+                <h3>--- TOP PLAYERS ---</h3>
+                <ul id="list-scores"></ul>
+                <button class="back-btn">BACK</button>
+            </div>
+
+            <div id="credits-section" class="menu-box hidden">
+                <p>Developed and Designed by:<br><strong>Maxinne D. Estillore</strong></p>
+                <p><i>Mala-anghel sa umaga,<br>halimaw sa gabi.</i></p>
+                <button class="back-btn">BACK</button>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
